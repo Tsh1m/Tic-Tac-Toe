@@ -23,12 +23,12 @@
 }
 .card.x {
     background:
-        url("image/x.svg") no-repeat,
+        url("x.svg") no-repeat,
         white;
 }
 .card.o {
     background:
-        url("image/o.svg") no-repeat,
+        url("o.svg") no-repeat,
         white;
 }
 
