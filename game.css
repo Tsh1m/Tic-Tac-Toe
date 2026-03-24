@@ -1,0 +1,45 @@
+@import "style.css";
+
+.game {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+.grid {
+    width: 50%;
+    aspect-ratio: 1/1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+ 
+.card {
+    background: white;
+    box-shadow: 1px 1px 1px black;
+    border-radius: 1em;
+}
+.card.x {
+    background:
+        url("/image/x.svg") no-repeat,
+        white;
+}
+.card.o {
+    background:
+        url("/image/o.svg") no-repeat,
+        white;
+}
+
+.card.x,
+.card.o {
+    background-position: center;
+    background-size: 85%;
+}
+
+@media screen and (min-width: 500px) {
+    .grid {
+        width: 30%;
+    }
+}

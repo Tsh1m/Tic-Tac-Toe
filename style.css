@@ -1,0 +1,80 @@
+:root {
+    color-scheme: dark;
+
+    --primary-color: light-dark(white, oklch(34% 0.1 275));
+    --secondary-color: light-dark(oklch(34% 0.1 275), white);
+
+    --primary-txt: light-dark(oklch(34% 0.1 275), white);
+    --secondary-txt: light-dark(white, oklch(34% 0.1 275));
+
+    --font-1: "Comic Sans MS";
+    --font-2: arial;
+
+    --heading: 24px;
+    --med: 16px;
+}
+
+* {
+    margin: 0%;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    color: var(--primary-txt);
+}
+
+body {
+    height: 100dvh;
+    background: var(--primary-color) no-repeat;
+    font-family: var(--font-1);
+    font-size: var(--med);
+}
+
+header {
+    width: 100%;
+    display: flex;
+    padding: 0.5em 1em;
+    justify-content: end;
+
+    .l-mode {
+        padding: 1em;
+    }
+}
+
+button {
+    border: none;
+    border-radius: 1em;
+    transition: 0.5s;
+    font-family: inherit;
+    font-size: var(--med);
+    overflow: hidden;
+}
+button:hover {
+    background: var(--secondary-color);
+    color: var(--secondary-txt);
+}
+a {
+    padding: 1em;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+}
+
+.menu {
+    color: var(--secondary-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    translate: 0 -1em;
+
+    .title {
+        font-size: var(--heading);
+    }
+}
