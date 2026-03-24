@@ -15,7 +15,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1em;
 }
- 
+
 .card {
     background: white;
     box-shadow: 1px 1px 1px black;
@@ -23,12 +23,12 @@
 }
 .card.x {
     background:
-        url("/image/x.svg") no-repeat,
+        url("image/x.svg") no-repeat,
         white;
 }
 .card.o {
     background:
-        url("/image/o.svg") no-repeat,
+        url("image/o.svg") no-repeat,
         white;
 }
 
