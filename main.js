@@ -1,20 +1,18 @@
+"use strict";
 let h2 = document.querySelector("h2");
 let cards = document.querySelectorAll(".card"); //la liste des cartes
 let block = document.querySelector(".block");
 let reset = document.querySelector(".rest");
-
+let h1 = block.querySelector("h1");
 let etat = ["x", "o", "void"]; //les etats possibles
-let coups = [0, 1, 2, 3, 4, 5, 6, 7, 8]; //les case disponible
 let tours = 0; //tour des joueur
+let coups = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let finish = 0;
-
 reset.addEventListener("click", () => location.reload());
-
 // click sur une carte
 cards.forEach((element, key) =>
     element.addEventListener("click", (_e) => clicky(element, key)),
 );
-
 //si on click on met le signe correspondant au joueur
 async function clicky(element, key) {
     //si la case est vide on peut le mettre
@@ -22,15 +20,12 @@ async function clicky(element, key) {
         element.classList.replace("void", etat[tours]);
         //puis on verifie si l'on a gagner
         check();
-
         //on retire un coup
         coups = coups.filter((value) => value !== key);
         console.log(coups);
-
         //on change de tours
         tours += 1;
         tours %= 2;
-
         //l'ia  joue
         await compTour();
         tours += 1;
@@ -38,14 +33,12 @@ async function clicky(element, key) {
         check();
     }
 }
-
 /**
  * Met en pause
  */
 function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
-
 function check() {
     //ligne
     for (let i = 0; i < 7; i += 3)
@@ -56,7 +49,6 @@ function check() {
         ) {
             end(cards[i].classList[1]);
         }
-
     //colonne
     for (let i = 0; i < 3; i++)
         if (
@@ -66,7 +58,6 @@ function check() {
         ) {
             end(cards[i].classList[1]);
         }
-
     //diagonal gauche
     if (
         cards[0].classList[1] !== "void" &&
@@ -74,7 +65,6 @@ function check() {
         cards[4].classList[1] === cards[8].classList[1]
     )
         end(cards[0].classList[1]);
-
     //diagonal droite
     if (
         cards[2].classList[1] !== "void" &&
@@ -82,7 +72,6 @@ function check() {
         cards[4].classList[1] === cards[6].classList[1]
     )
         end(cards[2].classList[1]);
-
     //aucune combinaison
     if (
         cards[0].classList[1] !== "void" &&
@@ -97,42 +86,35 @@ function check() {
     )
         end("");
 }
-
 function end(winner) {
     finish = 1;
     switch (winner) {
         case "x":
             block.style.background = "lightgreen";
-            block.querySelector("h1").innerText = "Victoire";
-
+            h1.innerText = "Victoire";
             break;
         case "o":
             block.style.background = "salmon";
-            block.querySelector("h1").innerText = "Echec";
+            h1.innerText = "Echec";
             break;
         default:
             block.style.background = "grey";
-            block.querySelector("h1").innerText = "Egalite";
-
+            h1.innerText = "Egalite";
             break;
     }
     block.style.display = "flex";
 }
-
 async function compTour() {
     if (!finish) {
         //on choisi un des coup disponible
         let rnd = Math.floor(Math.random() * (coups.length - 1));
         console.log(rnd);
-
         await sleep(rnd * 500);
         // on change la carte se trouvant a cette position
         cards[coups[rnd]].classList.replace("void", "o");
-
         // on retire la valeur se trouvant a cette position
         coups = coups.filter((value, index) => index !== rnd);
         console.log(coups);
-
         // block.style.display = "none";
     }
 }

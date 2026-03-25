@@ -4,6 +4,7 @@ let block: HTMLDivElement = document.querySelector(".block") as HTMLDivElement;
 let reset: HTMLButtonElement = document.querySelector(
     ".rest",
 ) as HTMLButtonElement;
+let h1: HTMLHeadingElement = block.querySelector("h1") as HTMLHeadingElement ;
 
 let etat: string[] = ["x", "o", "void"]; //les etats possibles
 let tours = 0; //tour des joueur
@@ -105,16 +106,16 @@ function end(winner: string) {
     switch (winner) {
         case "x":
             block.style.background = "lightgreen";
-            block.querySelector("h1").innerText = "Victoire";
+            h1.innerText = "Victoire";
 
             break;
         case "o":
             block.style.background = "salmon";
-            block.querySelector("h1").innerText = "Echec";
+            h1.innerText = "Echec";
             break;
         default:
             block.style.background = "grey";
-            block.querySelector("h1").innerText = "Egalite";
+            h1.innerText = "Egalite";
 
             break;
     }
