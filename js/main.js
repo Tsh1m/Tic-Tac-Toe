@@ -6,6 +6,7 @@ let etat = ["x", "o", "void"]; //etats possibles
 let tours = 0; //tour des joueur
 let coups = [0, 1, 2, 3, 4, 5, 6, 7, 8]; //coup disponible
 let finish = 0; //fin de parti
+let combinaison = 0; //0, 1, 2
 reset.addEventListener("click", () => location.reload());
 // click sur une carte
 cards.forEach((element, key) => element.addEventListener("click", (_e) => clicky(element, key)));
@@ -42,6 +43,7 @@ function check() {
         if (cards[i].classList[1] !== "void" &&
             cards[i].classList[1] === cards[i + 1].classList[1] &&
             cards[i + 1].classList[1] === cards[i + 2].classList[1]) {
+            combinaison = 1;
             end(cards[i].classList[1]);
         }
     //colonne
@@ -49,20 +51,27 @@ function check() {
         if (cards[i].classList[1] !== "void" &&
             cards[i].classList[1] === cards[i + 3].classList[1] &&
             cards[i + 3].classList[1] === cards[i + 6].classList[1]) {
+            combinaison = 1;
             end(cards[i].classList[1]);
         }
     //diagonal gauche
     if (cards[0].classList[1] !== "void" &&
         cards[0].classList[1] === cards[4].classList[1] &&
-        cards[4].classList[1] === cards[8].classList[1])
+        cards[4].classList[1] === cards[8].classList[1]) {
+        combinaison = 1;
         end(cards[0].classList[1]);
+    }
     //diagonal droite
     else if (cards[2].classList[1] !== "void" &&
         cards[2].classList[1] === cards[4].classList[1] &&
-        cards[4].classList[1] === cards[6].classList[1])
+        cards[4].classList[1] === cards[6].classList[1]) {
+        combinaison = 1;
         end(cards[2].classList[1]);
+    }
     //aucune combinaison
-    else if (cards[0].classList[1] !== "void" &&
+    //todo mettre un flag pour verifier si aucine combinaison
+    else if (combinaison == 0 &&
+        cards[0].classList[1] !== "void" &&
         cards[1].classList[1] !== "void" &&
         cards[2].classList[1] !== "void" &&
         cards[3].classList[1] !== "void" &&
