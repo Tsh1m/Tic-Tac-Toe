@@ -1,15 +1,13 @@
-let h2: HTMLHeadingElement = <HTMLHeadingElement>document.querySelector("h2");
+let h2: HTMLHeadingElement = <HTMLHeadingElement>document.querySelector("h2"); //les tours
 let cards: NodeListOf<HTMLDivElement> = document.querySelectorAll(".card"); //la liste des cartes
-let block: HTMLDivElement = document.querySelector(".block") as HTMLDivElement;
 let reset: HTMLButtonElement = document.querySelector(
     ".rest",
-) as HTMLButtonElement;
-let h1: HTMLHeadingElement = block.querySelector("h1") as HTMLHeadingElement ;
+) as HTMLButtonElement; //boutton relance
 
-let etat: string[] = ["x", "o", "void"]; //les etats possibles
+let etat: string[] = ["x", "o", "void"]; //etats possibles
 let tours = 0; //tour des joueur
-let coups = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-let finish = 0;
+let coups = [0, 1, 2, 3, 4, 5, 6, 7, 8]; //coup disponible
+let finish = 0; //fin de parti
 
 reset.addEventListener("click", () => location.reload());
 
@@ -20,11 +18,14 @@ cards.forEach((element, key) =>
 
 //si on click on met le signe correspondant au joueur
 async function clicky(element: HTMLDivElement, key: number) {
-    //si la case est vide on peut le mettre
+    //si la case est vide on peut mettre un X
     if (element.classList.contains("void") && tours === 0) {
         element.classList.replace("void", etat[tours]);
+
         //puis on verifie si l'on a gagner
         check();
+
+        h2.innerText = "Au tour de l'ia";
 
         //on retire un coup
         coups = coups.filter((value) => value !== key);
@@ -35,7 +36,7 @@ async function clicky(element: HTMLDivElement, key: number) {
         tours %= 2;
 
         //l'ia  joue
-        await compTour();
+        await iaTour();
         tours += 1;
         tours %= 2;
         check();
@@ -77,17 +78,15 @@ function check() {
         cards[4].classList[1] === cards[8].classList[1]
     )
         end(cards[0].classList[1]);
-
     //diagonal droite
-    if (
+    else if (
         cards[2].classList[1] !== "void" &&
         cards[2].classList[1] === cards[4].classList[1] &&
         cards[4].classList[1] === cards[6].classList[1]
     )
         end(cards[2].classList[1]);
-
     //aucune combinaison
-    if (
+    else if (
         cards[0].classList[1] !== "void" &&
         cards[1].classList[1] !== "void" &&
         cards[2].classList[1] !== "void" &&
@@ -105,37 +104,36 @@ function end(winner: string) {
     finish = 1;
     switch (winner) {
         case "x":
-            block.style.background = "lightgreen";
-            h1.innerText = "Victoire";
+            document.body.style.background = "lightgreen";
+            h2.innerText = "Victoire";
 
             break;
         case "o":
-            block.style.background = "salmon";
-            h1.innerText = "Echec";
+            document.body.style.background = "salmon";
+            h2.innerText = "Echec";
             break;
         default:
-            block.style.background = "grey";
-            h1.innerText = "Egalite";
+            document.body.style.background = "grey";
+            h2.innerText = "Egalite";
 
             break;
     }
-    block.style.display = "flex";
+    reset.style.display = "block";
 }
 
-async function compTour() {
+async function iaTour() {
     if (!finish) {
-        //on choisi un des coup disponible
-        let rnd = Math.floor(Math.random() * (coups.length - 1));
-        console.log(rnd);
+        let sec = Math.floor(Math.random() * 6) + 2; //on attend un peu
+        await sleep(sec * 500);
 
-        await sleep(rnd * 500);
+        //on choisi un des coup disponible aleatoirement
+        let rnd = Math.floor(Math.random() * (coups.length - 1));
+
         // on change la carte se trouvant a cette position
         cards[coups[rnd]].classList.replace("void", "o");
 
         // on retire la valeur se trouvant a cette position
         coups = coups.filter((value, index) => index !== rnd);
-        console.log(coups);
-
-        // block.style.display = "none";
+        h2.innerText = "A votre tour";
     }
 }

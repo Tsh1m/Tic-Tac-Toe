@@ -27,7 +27,7 @@ html {
 
 body {
     height: 100dvh;
-    background: var(--primary-color) no-repeat;
+    background: var(--primary-color);
     font-family: var(--font-1);
     font-size: var(--med);
 }
