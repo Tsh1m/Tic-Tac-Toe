@@ -14,7 +14,7 @@ cards.forEach((element, key) =>
 //si on click on met le signe correspondant au joueur
 async function clicky(element, key) {
     //si la case est vide on peut mettre un X
-    if (element.classList.contains("void") && tours === 0) {
+    if (element.classList.contains("void") && tours === 0 && finish==0) {
         element.classList.replace("void", etat[tours]);
         //puis on verifie si l'on a gagner
         check();
