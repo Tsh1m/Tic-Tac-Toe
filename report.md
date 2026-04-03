@@ -1,32 +1,32 @@
-# Ce dépôt a été conçu dans le cadre d'un projet de promotion
+# Tic-Tac-Toe
 
-<style>
-    span.hint{color:#9b099b;}
+> [!Note]
+> Ce document présente le parcours effectuer dans la création d'un projet de fin de 1<sup>er</sup> semestre
 
-    .warn{color:red ;text-decoration:underline}
-
-    .X,.O{font-weight: 500;font-size:18px}
-
-    .X{color:salmon;}
-
-    .O{color:cyan;}
-</style>
-
-Ce document présente le parcours effectuer dans la création d'un projet de fin de 1<sup>er</sup> semestre
+- [Tic-Tac-Toe](#tic-tac-toe)
+  - [1. Introduction : recherche du projet](#1-introduction--recherche-du-projet)
+  - [2. Développement](#2-développement)
+    - [2.1 Documentation](#21-documentation)
+    - [2.2 Recherche d'élément](#22-recherche-délément)
+    - [2.3 Développement du jeu](#23-développement-du-jeu)
+    - [2.4 Revue de code et recherche de bug](#24-revue-de-code-et-recherche-de-bug)
+    - [2.5 Correction des bugs et réorganisation](#25-correction-des-bugs-et-réorganisation)
+  - [3. Conclusion](#3-conclusion)
 
 ## 1. Introduction : recherche du projet
 
-Au départ, j'avais décidé de choisir une application de chat avec Socket.io (<span class="hint">_#14_</span>). Il y avait un bon tutoriel sur l'utilisation de l'outil et j'ai pu le réaliser assez simplement.
+Au départ, j'avais décidé de choisir une application de chat avec Socket.io (`#14`). Il y avait un bon tutoriel sur l'utilisation de l'outil et j'ai pu le réaliser assez simplement.
 
 Cependant, la structure du code était assez difficile a assimilée, l'utilisation de Node.js et de module était encore nouvelle pour moi et je ne savais pas si je pouvais facilement l'expliquer. Du coup j'ai laissé le projet en pause, mais il est toujours disponible à cette [adresse](https://github.com/Tsh1m/chat).
 
-Ensuite, j'ai voulu essayer d'utiliser le Framework [TailwindCss](https://tailwindcss.com/) (<span class="hint">_#23_</span>) mais son utilisation ne me donner pas envie de l'utiliser car, de ce que j'ai vue, les classe des balises devenait très long ce qui ne faciliter pas la lecture du code. J'avais vue qu'il y avait une alternative à ce problème en spécifiant des composants, mais la procédure ne me plaisait pas non plus. Alors, par souci de visibilité, de compréhension et de manque de volonté j'ai décidé d'abandonner ce projet.
+Ensuite, j'ai voulu essayer d'utiliser le Framework [TailwindCss](https://tailwindcss.com/) (`#23`) mais son utilisation ne me donner pas envie de l'utiliser car, de ce que j'ai vue, les classe des balises devenait très long ce qui ne faciliter pas la lecture du code. J'avais vue qu'il y avait une alternative à ce problème en spécifiant des composants, mais la procédure ne me plaisait pas non plus. Alors, par souci de visibilité, de compréhension et de manque de volonté j'ai décidé d'abandonner ce projet.
 
-Finalement, mon dernier choix s'est porté sur la création d'un mini jeu web interactif (<span class="hint">_#24_</span>) sur le jeu **Tic-Tac-Toe**. Je me disais que je pourrais essayer et voir comment se dérouler la création d'un jeu.
+Finalement, mon dernier choix s'est porté sur la création d'un mini jeu web interactif (`#24`) sur le jeu **Tic-Tac-Toe**. Je me disais que je pourrais essayer et voir comment se dérouler la création d'un jeu.
 
 ---
 
-<span class="warn">À Noter</span> : J'avais déjà fait un portfolio personnel pour ma page GitHub (<span class="hint">_#21_</span>) avant l'annonce des projets, mais il n'est pas vraiment complet, du coup j'ai décidé d'en choisir un autre parce que je voulais faire le projet correctement.
+> [!Note]
+> J'avais déjà fait un portfolio personnel pour ma page GitHub (`#21`) avant l'annonce des projets, mais il n'est pas vraiment complet, du coup j'ai décidé d'en choisir un autre parce que je voulais faire le projet correctement.
 
 ## 2. Développement
 
@@ -56,7 +56,7 @@ Ainsi, j'ai pu me faire une idée globale du jeu.
 
 - Récupérer les éléments : Grâce à la méthode `querySelector` et `querySelectorAll`
 - Détection de click de l'utilisateur : Utilisation de la fonction `addEventlistener`
-- changer le type de la carte : Avec `element.classList.replace()`
+- changer le type de la carte : Avec `element.classList.replace`
 - Changement de l'arrière-plan : Avec `element.style.background`
 
 ### 2.3 Développement du jeu
@@ -74,17 +74,18 @@ J'ai commencé à déclarer quelques variables :
 - coups : La liste de coups disponible
 - etat : Qui représente la liste des états possible d'une case
 
-Je commence par détecter le click du joueur dans la liste des cases et en changeant le fond par un <span class="X">X</span> et en changeant le titre pour indiquer le tour de **"""ia"""**. Ensuite je retire un coup de la liste, et je lance une fonction appeler `check` qui se chargera de vérifier si les cases forme une ligne verticale, horizontale ou une diagonale.
+Je commence par détecter le click du joueur dans la liste des cases et en changeant le fond par un **`X`** et en changeant le titre pour indiquer le tour de **"""ia"""**. Ensuite je retire un coup de la liste, et je lance une fonction appeler `check` qui se chargera de vérifier si les cases forme une ligne verticale, horizontale ou une diagonale.
 
 ---
 
-<span class="warn">À Noter </span> : je mets des guillemets sur le terme **ia** car j'aimerai que l'on ne mélange pas l'ia des jeux avec les modèles de LLM, Renforcement Learning... tels que ChatGPT, Deepseek, Claude etc... Ce jeu a été réalisé sans l'intervention de quelconque ia que ce soit dans la recherche, le développement, la relecture, la recherche correction de bugs, ni même dans la création de ce document.
+> [!Note]
+> Je mets des guillemets sur le terme **ia** car j'aimerai que l'on ne mélange pas l'ia des jeux avec les modèles de LLM, Renforcement Learning... tels que ChatGPT, Deepseek, Claude etc... Ce jeu a été réalisé sans l'intervention de quelconque ia que ce soit dans la recherche, le développement, la relecture, la recherche et correction de bugs, ni même dans la création de ce document.
 
 Le terme **ia** sera utiliser pour définir le code qui constitue l'adversaire du joueur.
 
 ---
 
-Lors du tour de l'ia, le jeu se met en pause pour un moment avec `sleep`, l'ordinateur choisie un nombre aléatoirement dans la liste de coups et le retire de cette liste puis change le fond de la carte correspondante en <span class="O">O</span> et change le titre pour indiquer le tour du joueur. Enfin on refait un autre `check` pour vérifier si l'ordi à gagner.
+Lors du tour de l'ia, le jeu se met en pause pour un moment avec `sleep`, l'ordinateur choisie un nombre aléatoirement dans la liste de coups et le retire de cette liste puis change le fond de la carte correspondante en **`O`** et change le titre pour indiquer le tour du joueur. Enfin on refait un autre `check` pour vérifier si l'ordi à gagner.
 
 On refait ses étapes jusqu'à ce que l'un des deux adversaires gagne ou que la partie se termine.
 
@@ -111,7 +112,7 @@ Pour chaque bug :
 Ce projet était riche en connaissance et en effort et m'a permis :
 
 - De mieux comprendre la gestion d'un projet web.
-- D'avoir ne meilleur vu d'ensemble du JavaScript
+- D'avoir une meilleure vue d'ensemble du JavaScript
 
 Le code est toujours disponible sur ce dépôt et est sous licence MIT. Libre à vous de le cloner pour ajouter des fonctionnalités.
 
