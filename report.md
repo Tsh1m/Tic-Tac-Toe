@@ -78,7 +78,7 @@ Je commence par détecter le click du joueur dans la liste des cases et en chang
 
 ---
 
-> [!Note]
+> [!warning]
 > Je mets des guillemets sur le terme **ia** car j'aimerai que l'on ne mélange pas l'ia des jeux avec les modèles de LLM, Renforcement Learning... tels que ChatGPT, Deepseek, Claude etc... Ce jeu a été réalisé sans l'intervention de quelconque ia que ce soit dans la recherche, le développement, la relecture, la recherche et correction de bugs, ni même dans la création de ce document.
 
 Le terme **ia** sera utiliser pour définir le code qui constitue l'adversaire du joueur.
